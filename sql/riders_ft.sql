@@ -13,7 +13,8 @@ WITH first_trip AS
     id,
     (created_at at TIME ZONE '{timezone}')::date AS account_created_date
   FROM tada_member_service.rider r
-  WHERE id in
+  WHERE region = '{region}'
+  AND id in
     (SELECT rider_uuid::uuid FROM first_trip
     WHERE date_trunc('month', first_trip) = date_trunc('month', date '{date}')))
 

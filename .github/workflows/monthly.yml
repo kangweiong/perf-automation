@@ -4,9 +4,6 @@ name: Monthly Run
 # Controls when the workflow will run
 on:
   schedule:
-    - cron: '45 00 1 * *' # SG
-    - cron: '30 00 1 * *' # VN
-    - cron: '15 00 1 * *' # KH
     - cron: '00 00 1 * *' # TH
   workflow_dispatch:
 
@@ -17,16 +14,7 @@ jobs:
 
       - name: Set region variable
         id: set_region
-        run: |
-          if [[ "${{ github.event.schedule }}" == "45 00 1 * *" ]]; then
-            echo "REGION=SG" >> $GITHUB_ENV
-          elif [[ "${{ github.event.schedule }}" == "30 00 1 * *" ]]; then
-            echo "REGION=VN" >> $GITHUB_ENV
-          elif [[ "${{ github.event.schedule }}" == "15 00 1 * *" ]]; then
-            echo "REGION=KH" >> $GITHUB_ENV
-          elif [[ "${{ github.event.schedule }}" == "00 00 1 * *" ]]; then
-            echo "REGION=TH" >> $GITHUB_ENV
-          fi
+        run: echo "REGION=TH" >> $GITHUB_ENV
 
       - name: checkout repo content
         uses: actions/checkout@v4 # checkout the repository content
@@ -42,10 +30,6 @@ jobs:
           echo "REDASH_API_KEY=${{ secrets.REDASH_API_KEY }}" >> .env
           echo "SLACK_TOKEN=${{ secrets.SLACK_TOKEN }}" >> .env
           echo "SLACK_CHANNEL=${{ secrets.SLACK_CHANNEL }}" >> .env
-          echo "POSTGRES_HOST=${{ secrets.POSTGRES_HOST }}" >> .env
-          echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" >> .env
-          echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}" >> .env
-          echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> .env
 
       - name: install python packages
         run: |

@@ -1,6 +1,7 @@
 SELECT
     COUNT(*) FILTER(WHERE type in ('PRIVATE_HIRE','HOURLY_RENTAL')) AS approved_phv,
-    COUNT(*) FILTER(WHERE type = 'TAXI') AS approved_taxi
+    COUNT(*) FILTER(WHERE type = 'TAXI') AS approved_taxi,
+    COUNT(*) FILTER(WHERE type = 'BIKE') AS approved_bike
 FROM tada_member_service.driver
 WHERE region = '{region}'
     AND approved = True
