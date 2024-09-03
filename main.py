@@ -289,6 +289,20 @@ def main(region:str):
 
   df['average_4w_eta'] = df22.daily_median_eta
 
+  df['bike_ft_unique'] = df.bike_ft_all_time/df.completed_bike
+  df['bike_repeated'] = df16.repeated_bike
+  # df['bike_activated'] = df16.activated_bike
+  df['bike_resurrected'] = df16.resurrected_bike
+  df['bike_churned'] = df16.churned_bike
+  df['bike_inflow'] = df16.activated_bike + df16.resurrected_bike - df16.churned_bike
+
+  df['_4w_ft_unique'] = df._4w_ft_all_time/df.completed_4w
+  df['_4w_repeated'] = df16.repeated_4w
+  # df['_4w_activated'] = df16.activated_4w
+  df['_4w_resurrected'] = df16.resurrected_4w
+  df['_4w_churned'] = df16.churned_4w
+  df['_4w_inflow'] = df16.activated_4w + df16.resurrected_4w - df16.churned_4w
+
   df = df.T
   df.columns = [f"{output_date}"]
 
