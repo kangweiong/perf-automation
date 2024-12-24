@@ -10,8 +10,7 @@ from utils.helpers import Query, Redash
 from utils.slack import SlackBot
 
 
-def main(region:str):
-
+def main():
   load_dotenv()
 
   redash = Redash(key=os.getenv("REDASH_API_KEY"), base_url=os.getenv("REDASH_BASE_URL"))
@@ -23,6 +22,8 @@ def main(region:str):
   DAYS_IN_MONTH = int(date.split("-")[2])
 
   output_date = datetime.strptime(date, dt_format).strftime("%b_%Y")
+
+  region = 'TH'
 
   timezone = TIMEZONES[region]
   region_str = REGIONS[region]
@@ -314,7 +315,4 @@ def main(region:str):
                    f"Monthly Report for {region} {output_date}")
 
 if __name__ == '__main__':
-  parser = argparse.ArgumentParser()
-  parser.add_argument('--region', type=str, help='Region to run the script for, i.e., SG, VN, KH or TH')
-  args = parser.parse_args()
-  main(region=args.region)
+  main()
