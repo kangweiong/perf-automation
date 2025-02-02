@@ -128,7 +128,9 @@ def main():
   df['drivers_ft_unique'] = df.driver_ft_all_time/df.completed_driver
   df['drivers_repeated'] = df9.repeated
   df['driver_resurrected'] = df9.resurrected
+  df['driver_resurrected_rate'] = None
   df['driver_churned'] = df9.churned
+  df['driver_churned_rate'] = None
   df['driver_inflow'] = df9.activated + df9.resurrected - df9.churned
 
   df = df.copy()
@@ -159,7 +161,9 @@ def main():
   df['drivers_ft_unique_phv'] = df.driver_ft_all_time_phv/df.completed_driver_phv
   df['drivers_repeated_phv'] = df9.repeated_phv
   df['driver_resurrected_phv'] = df9.resurrected_phv
+  df['driver_resurrected_rate_phv'] = None
   df['driver_churned_phv'] = df9.churned_phv
+  df['driver_churned_rate_phv'] = None
   df['driver_inflow_phv'] = df9.activated_phv + df9.resurrected_phv - df9.churned_phv
 
   df = df.copy()
@@ -190,7 +194,9 @@ def main():
   df['drivers_ft_unique_taxi'] = df.driver_ft_all_time_taxi/df.completed_driver_taxi
   df['drivers_repeated_taxi'] = df9.repeated_taxi
   df['driver_resurrected_taxi'] = df9.resurrected_taxi
+  df['driver_resurrected_rate_taxi'] = None
   df['driver_churned_taxi'] = df9.churned_taxi
+  df['driver_churned_rate_taxi'] = None
   df['driver_inflow_taxi'] = df9.activated_taxi + df9.resurrected_taxi - df9.churned_taxi
 
   df = df.copy()
@@ -222,7 +228,9 @@ def main():
   df['riders_ft_unique'] = df.rider_ft_all_time/df.rider_unique_complete_monthly
   df['riders_repeated'] = df13.repeated
   df['rider_resurrected'] = df13.resurrected
+  df['rider_resurrected_rate'] = None
   df['rider_churned'] = df13.churned
+  df['rider_churned_rate'] = None
   df['rider_inflow'] = df13.activated + df13.resurrected - df13.churned
 
   df = df.T
