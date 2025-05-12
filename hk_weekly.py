@@ -92,7 +92,7 @@ def main():
   df['promo_spend_hkd'] = df7.discount
   df['promo_spend_usd'] = None
   df['promotion_trips'] = df7.discount_trips
-  df['non_promotion_trips'] = df.promotion_trips - df7.discount_trips
+  df['non_promotion_trips'] = df.completed_trips - df7.discount_trips
   df['promotion/completed'] = df.promotion_trips / df.completed_trips
 
   df['average_promotion_value'] = None

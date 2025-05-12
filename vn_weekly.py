@@ -14,7 +14,7 @@ def main():
   redash = Redash(key=os.getenv("REDASH_API_KEY"), base_url=os.getenv("REDASH_BASE_URL"))
 
   dt_format = "%Y-%m-%d"
-  
+
   local_now = datetime.now(timezone.utc) + timedelta(hours=7)
   start_date = (local_now - timedelta(days=local_now.weekday() + 7)).strftime(dt_format)
 
@@ -92,7 +92,7 @@ def main():
   df['promo_spend_vnd'] = df7.discount
   df['promo_spend_usd'] = None
   df['promotion_trips'] = df7.discount_trips
-  df['non_promotion_trips'] = df.promotion_trips - df7.discount_trips
+  df['non_promotion_trips'] = df.completed_trips - df7.discount_trips
   df['promotion/completed'] = df.promotion_trips / df.completed_trips
 
   df['average_promotion_value'] = None
