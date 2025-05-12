@@ -1,5 +1,5 @@
 import os
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 import pandas as pd
 from dotenv import load_dotenv
@@ -14,7 +14,8 @@ def main():
   redash = Redash(key=os.getenv("REDASH_API_KEY"), base_url=os.getenv("REDASH_BASE_URL"))
 
   dt_format = "%Y-%m-%d"
-  start_date = (datetime.today() - timedelta(days=datetime.today().weekday() + 7)).strftime(dt_format)
+  local_now = datetime.now(timezone.utc) + timedelta(hours=8)
+  start_date = (local_now - timedelta(days=local_now.weekday() + 7)).strftime(dt_format)
 
   output_date = datetime.strptime(start_date, dt_format).strftime("%d_%b_%Y")
 
@@ -155,10 +156,12 @@ def main():
   df = df.T
   df.columns = [f"{output_date}"]
 
-  df.to_csv(f"HK_Weekly_{output_date}.csv")
+  output_file = f"HK_Weekly_{output_date}.csv"
+
+  df.to_csv(output_file)
 
   slack = SlackBot()
-  slack.uploadFile(f"HK_{output_date}.csv", 
+  slack.uploadFile(output_file, 
                    os.getenv("SLACK_CHANNEL"),
                    f"Weekly Report for HK {output_date}")
 
