@@ -4,7 +4,7 @@ name: TH Monthly Run
 # Controls when the workflow will run
 on:
   schedule:
-    - cron: '00 00 1 * *' # TH
+    - cron: '30 00 1 * *' # TH
   workflow_dispatch:
 
 jobs:
