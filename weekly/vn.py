@@ -156,10 +156,12 @@ def main():
   df = df.T
   df.columns = [f"{output_date}"]
 
-  df.to_csv(f"VN_Weekly_{output_date}.csv")
+  output_file = f"VN_Weekly_{output_date}.csv"
+
+  df.to_csv(output_file)
 
   slack = SlackBot()
-  slack.uploadFile(f"VN_Weekly_{output_date}.csv", 
+  slack.uploadFile(output_file, 
                    os.getenv("SLACK_CHANNEL"),
                    f"Weekly Report for VN {output_date}")
 

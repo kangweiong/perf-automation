@@ -1,10 +1,10 @@
 # This is a basic workflow to help you get started with Actions
-name: TH Monthly Run
+name: Operational Matrix Monthly Run
 
 # Controls when the workflow will run
 on:
   schedule:
-    - cron: '30 00 1 * *' # TH
+    - cron: '00 00 1 * *'
   workflow_dispatch:
 
 jobs:
@@ -32,5 +32,5 @@ jobs:
           pip install -r requirements.txt
 
       - name: execute py script
-        run: python th.py
+        run: python -m monthly.all_s
   

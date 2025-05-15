@@ -236,10 +236,12 @@ def main():
   df = df.T
   df.columns = [f"{output_date}"]
 
-  df.to_csv(f"HK_{output_date}.csv")
+  output_file = f"HK_{output_date}.csv"
+
+  df.to_csv(output_file)
 
   slack = SlackBot()
-  slack.uploadFile(f"HK_{output_date}.csv", 
+  slack.uploadFile(output_file, 
                    os.getenv("SLACK_CHANNEL"),
                    f"Monthly Report for HK {output_date}")
 

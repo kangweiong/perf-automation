@@ -270,12 +270,12 @@ def main():
 
   df.columns = [f"{output_date}"]
 
-  filename = f"KH_{output_date}.csv"
+  output_file = f"KH_{output_date}.csv"
 
-  df.to_csv(filename)
+  df.to_csv(output_file)
 
   slack = SlackBot()
-  slack.uploadFile(filename, 
+  slack.uploadFile(output_file, 
                    os.getenv("SLACK_CHANNEL"),
                    f"Monthly Report for KH {output_date}")
 
