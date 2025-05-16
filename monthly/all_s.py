@@ -15,9 +15,6 @@ def main():
 
   dt_format = "%Y-%m-%d"
   start_date = (datetime.today().replace(day=1) - timedelta(days=1)).replace(day=1).strftime(dt_format)
-  end_date = (datetime.today().replace(day=1) - timedelta(days=1)).strftime(dt_format)
-
-  DAYS_IN_MONTH = int(end_date.split("-")[2])
 
   output_date = datetime.strptime(start_date, dt_format).strftime("%b_%Y")
 
@@ -39,7 +36,7 @@ def main():
   df5 = redash.get_result(3004)  # KH - T1
 
     # Save to Excel
-  output_file = f"monthly_report_{output_date}.xlsx"
+  output_file = f"Monthly_Report_S_{output_date}.xlsx"
 
   with pd.ExcelWriter(output_file, engine="xlsxwriter") as writer:
       df1.to_excel(writer, sheet_name="SG Trips Breakdown", index=False)
@@ -51,7 +48,7 @@ def main():
   slack = SlackBot()
   slack.uploadFile(output_file, 
                    os.getenv("SLACK_CHANNEL"),
-                   f"Monthly Operational Matrix Report for {output_date}")
+                   f"Monthly Report S for {output_date}")
 
 if __name__ == "__main__":
   main()
