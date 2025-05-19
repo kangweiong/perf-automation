@@ -4,7 +4,7 @@ name: VN Weekly Run
 # Controls when the workflow will run
 on:
   schedule:
-    - cron: '00 22 * * 0' # VN
+    - cron: '00 23 * * 0' # VN
   workflow_dispatch:
 
 jobs:
